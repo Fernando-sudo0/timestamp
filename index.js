@@ -25,7 +25,7 @@ app.get("/api/:date", function (req, res) {
 
   if (isNaN(sourDate)){
     unix = Math.floor(new Date(sourDate));
-    date= new Date(sourDate);
+    date= new Date(sourDate).toUTCString();
   }
   else{
     unix = Math.floor(sourDate);
@@ -33,9 +33,7 @@ app.get("/api/:date", function (req, res) {
 
   }
   
- 
-
-  res.json({unix :  unix , utc : date})
+   res.json({unix :  unix , utc : date})
  
 });
 
