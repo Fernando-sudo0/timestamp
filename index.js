@@ -39,6 +39,7 @@ app.get("/api/:date", function (req, res) {
     date = new Date(parseInt(sourDate)).toUTCString();
     
   }
+  
   res.json({unix :  unix , utc : date})
 }
   
