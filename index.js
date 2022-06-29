@@ -18,15 +18,19 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/api/", function(req,res) {
+  const sourDate = Date.now();
+  unix = Math.floor(sourDate);
+  date = new Date(parseInt(sourDate)).toUTCString();
+  res.json({unix :  unix , utc : date});
+});
+
 app.get("/api/:date", function (req, res) {
   var date;
   var unix
   const sourDate = req.params.date
 
- 
-
-
-    if (isNaN(sourDate)){
+  if (isNaN(sourDate)){
            
         unix = Math.floor(new Date(sourDate));
         date= new Date(sourDate).toUTCString();
