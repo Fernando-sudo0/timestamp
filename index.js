@@ -24,6 +24,10 @@ app.get("/api/:date", function (req, res) {
   const sourDate = req.params.date
 
   if (isNaN(sourDate)){
+    
+    if (Math.floor(new Date(sourDate) == null))
+        res.json({ error : "Invalid Date" });
+
     unix = Math.floor(new Date(sourDate));
     date= new Date(sourDate).toUTCString();
   }
