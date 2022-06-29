@@ -23,21 +23,25 @@ app.get("/api/:date", function (req, res) {
   var unix
   const sourDate = req.params.date
 
-  if (isNaN(sourDate)){
-    
-    if (Math.floor(new Date(sourDate) == null))
-        res.json({ error : "Invalid Date" });
+  if (Math.floor(new Date(sourDate)) == null){
 
-    unix = Math.floor(new Date(sourDate));
-    date= new Date(sourDate).toUTCString();
+    res.json({ error : "Invalid Date" })
   }
   else{
+
+    if (isNaN(sourDate)){
+           
+        unix = Math.floor(new Date(sourDate));
+        date= new Date(sourDate).toUTCString();
+    }
+    else{
     unix = Math.floor(sourDate);
     date = new Date(parseInt(sourDate)).toUTCString();
-
+    
   }
+  res.json({unix :  unix , utc : date})
+}
   
-   res.json({unix :  unix , utc : date})
  
 });
 
